@@ -36,8 +36,8 @@ class SuperScaffold extends StatelessWidget {
   final bool xBotSafe;
   const SuperScaffold(
       {super.key,
-      this.topColor = Colors.white,
-      this.botColor = Colors.white,
+      this.topColor = Colors.grey,
+      this.botColor = Colors.grey,
       required this.child,
       this.xBotSafe = true});
 

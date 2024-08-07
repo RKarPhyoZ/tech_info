@@ -20,7 +20,10 @@ class CustomDrawer extends StatelessWidget {
             10.heightBox(),
             const Divider(),
             10.heightBox(),
-            Row(),
+            selectLanguage(() {}, "assets/flags/thailand.jpg", "Thailand".tr),
+            30.heightBox(),
+            selectLanguage(
+                () {}, "assets/flags/united_state.jpg", "English".tr),
           ],
         ),
       ),
@@ -32,7 +35,22 @@ class CustomDrawer extends StatelessWidget {
       onTap: onTap(),
       child: Container(
         color: Colors.transparent,
-        child: Row(),
+        child: Row(
+          children: [
+            Container(
+              width: 30,
+              height: 20,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(flag),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            20.widthBox(),
+            Text(text),
+          ],
+        ),
       ),
     );
   }
