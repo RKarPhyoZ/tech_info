@@ -3,11 +3,11 @@ class ProductModel {
   final String description;
   final String thumbnail;
   final List<dynamic> images;
-  final double price;
-  final double rating;
+  final String price;
+  final String rating;
   final String returnPolicy;
   final String warrantyInformation;
-  final int stock;
+  final String stock;
   final String brand;
   ProductModel({
     required this.title,
@@ -28,11 +28,11 @@ class ProductModel {
       description: json["description"] ?? "",
       thumbnail: json["thumbnail"] ?? "",
       images: json["images"] ?? [],
-      price: json["price"] ?? 0.0,
-      rating: json["rating"] ?? 0.0,
+      price: json["price"].toString(),
+      rating: json["rating"].toString(),
       returnPolicy: json["returnPolicy"] ?? "",
       warrantyInformation: json["warrantyInformation"] ?? "",
-      stock: json["stock"] ?? 0,
+      stock: json["stock"].toString(),
       brand: json["brand"] ?? "",
     );
   }

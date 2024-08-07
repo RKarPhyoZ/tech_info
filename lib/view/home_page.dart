@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:techinfo/controller/product_controller.dart';
+import 'package:techinfo/model/category_model.dart';
 import 'package:techinfo/util/common.dart';
 import 'package:techinfo/util/extensions.dart';
 import 'package:techinfo/view/product_list_page.dart';
@@ -58,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                             shrinkWrap: true,
                             itemCount: controller.categories.length,
                             itemBuilder: (context, index) =>
-                                category(controller.categories[index].name),
+                                category(controller.categories[index]),
                             separatorBuilder: (context, index) =>
                                 20.heightBox(),
                           ),
@@ -72,10 +73,10 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget category(String name) {
+  Widget category(CategoryModel category) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => ProductListPage(name: name));
+        Get.to(() => ProductListPage(category: category));
       },
       child: Container(
         width: double.infinity,
@@ -86,7 +87,7 @@ class _HomePageState extends State<HomePage> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(5),
         ),
-        child: Text(name),
+        child: Text(category.name),
       ),
     );
   }

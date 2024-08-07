@@ -2,14 +2,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:techinfo/controller/product_controller.dart';
+import 'package:techinfo/model/category_model.dart';
 import 'package:techinfo/model/product_model.dart';
 import 'package:techinfo/util/common.dart';
 import 'package:techinfo/util/extensions.dart';
 import 'package:techinfo/view/product_detail_page.dart';
 
 class ProductListPage extends StatefulWidget {
-  final String name;
-  const ProductListPage({super.key, required this.name});
+  final CategoryModel category;
+  const ProductListPage({super.key, required this.category});
 
   @override
   State<ProductListPage> createState() => _ProductListPageState();
@@ -25,7 +26,7 @@ class _ProductListPageState extends State<ProductListPage> {
   getProductList() async {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ProductController product = Get.find();
-      product.getProducts(widget.name);
+      product.getProducts(widget.category.slug);
     });
   }
 
@@ -34,7 +35,7 @@ class _ProductListPageState extends State<ProductListPage> {
     return SuperScaffold(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.name),
+          title: Text(widget.category.name),
           centerTitle: true,
         ),
         body: Padding(
@@ -73,6 +74,8 @@ class _ProductListPageState extends State<ProductListPage> {
   Widget product(ProductModel product) {
     return GestureDetector(
       onTap: () {
+        ProductController productCtrl = Get.find();
+        productCtrl.dotPositoin = 0;
         Get.to(() => ProductDetailPage(product: product));
       },
       child: Container(
