@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../util/common.dart';
@@ -10,6 +13,7 @@ class LocalStorageServices {
   static Future<void> initLocalStorage() async {
     try {
       _sharedPreferences = await SharedPreferences.getInstance();
+      assignLanguage();
     } catch (e) {
       superPrint(e);
     }
@@ -28,10 +32,13 @@ class LocalStorageServices {
   // Set  language in shared preferences
   static Future<void> setLanguage(String languageCode) async {
     try {
-      superPrint(languageCode,title: "Language");
       await _sharedPreferences.setString(language, languageCode);
     } catch (e) {
       superPrint(e);
     }
+  }
+
+  static assignLanguage() {
+    Get.updateLocale(Locale(LocalStorageServices.getLanguage() ?? "en-us"));
   }
 }

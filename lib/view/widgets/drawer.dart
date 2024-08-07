@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:techinfo/service/local_storage_service.dart';
-import 'package:techinfo/util/common.dart';
 import 'package:techinfo/util/extensions.dart';
 
 import '../../util/app_localization.dart';
@@ -27,12 +26,14 @@ class CustomDrawer extends StatelessWidget {
             selectLanguage(() {
               Get.updateLocale(Locale(AppLanguages.th.name));
               LocalStorageServices.setLanguage("th");
+              Get.back();
             }, "assets/flags/thailand.jpg", "Thailand".tr,
                 LocalStorageServices.getLanguage() == "th"),
             30.heightBox(),
             selectLanguage(() {
               Get.updateLocale(Locale("${AppLanguages.th.name}-us"));
               LocalStorageServices.setLanguage("${AppLanguages.en.name}-us");
+              Get.back();
             }, "assets/flags/united_state.jpg", "English".tr,
                 LocalStorageServices.getLanguage() == "en-us"),
           ],

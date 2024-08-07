@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:techinfo/controller/product_controller.dart';
-import 'package:techinfo/model/category_model.dart';
 import 'package:techinfo/util/common.dart';
 import 'package:techinfo/util/extensions.dart';
 import 'package:techinfo/view/product_list_page.dart';
