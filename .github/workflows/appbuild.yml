@@ -1,4 +1,4 @@
-name: "Build & Release Apps"
+name: "Release App"
 
 on:
   pull_request:
