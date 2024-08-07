@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:techinfo/util/common.dart';
 import 'package:techinfo/util/extensions.dart';
+
+import '../../util/app_localization.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -20,19 +23,23 @@ class CustomDrawer extends StatelessWidget {
             10.heightBox(),
             const Divider(),
             10.heightBox(),
-            selectLanguage(() {}, "assets/flags/thailand.jpg", "Thailand".tr),
+            selectLanguage(() {
+              superPrint("OK");
+              Get.updateLocale(Locale(AppLanguages.th.name));
+            }, "assets/flags/thailand.jpg", "Thailand".tr),
             30.heightBox(),
-            selectLanguage(
-                () {}, "assets/flags/united_state.jpg", "English".tr),
+            selectLanguage(() {
+              Get.updateLocale(Locale("${AppLanguages.th.name}-us"));
+            }, "assets/flags/united_state.jpg", "English".tr),
           ],
         ),
       ),
     );
   }
 
-  Widget selectLanguage(Function onTap, String flag, String text) {
+  Widget selectLanguage(Function() onTap, String flag, String text) {
     return GestureDetector(
-      onTap: onTap(),
+      onTap: onTap,
       child: Container(
         color: Colors.transparent,
         child: Row(

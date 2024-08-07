@@ -39,6 +39,10 @@ dependencies:
   http: ^1.2.2
   fluttertoast: ^8.2.5
   focus_detector: ^2.0.1
+  carousel_slider: ^4.2.1
+  dots_indicator: ^3.0.0
+  cached_network_image: ^3.4.0
+  shared_preferences: ^2.3.1
 
 dev_dependencies:
   flutter_test:

@@ -7,12 +7,12 @@ import '../util/common.dart';
 class ApiResponse {
   int statusCode;
   String bodyString;
-  Map bodyData;
+  dynamic bodyData;
 
   ApiResponse({
     required this.statusCode,
-    required this.bodyString,
     required this.bodyData,
+    required this.bodyString,
   });
 }
 
@@ -21,28 +21,29 @@ class ApiServices {
   static bool byAuth = false;
 
   ApiResponse _convertResponse(http.Response response) {
-    dynamic bodyData = '';
+    dynamic bodyData;
+    String bodyString = response.body;
 
     try {
-      bodyData = jsonDecode(response.body);
+      bodyData = jsonDecode(bodyString);
       if (response.statusCode == 401) {
         // _handleUnauthorized();
       } else if (response.statusCode == 503 || response.statusCode == 521) {
         // _handleServerMaintenance();
       }
     } catch (e) {
-      bodyData = {};
+      bodyData = bodyString;
     }
 
     return ApiResponse(
       statusCode: response.statusCode,
-      bodyString: response.body,
       bodyData: bodyData,
+      bodyString: bodyString,
     );
   }
 
-  void _validateResponse(ApiResponse apiResponse, Function(Map) onSuccess,
-      Function(Map) onFailure) {
+  void _validateResponse(ApiResponse apiResponse, Function(dynamic) onSuccess,
+      Function(dynamic) onFailure) {
     if (apiResponse.statusCode == 200 || apiResponse.statusCode == 201) {
       onSuccess(apiResponse.bodyData);
     } else {
@@ -60,8 +61,8 @@ class ApiServices {
     Map<String, dynamic>? payload,
     bool xNeedToken = false,
     bool xBaseUrlIncluded = true,
-    required Function(Map) onSuccess,
-    required Function(Map) onFailure,
+    required Function(dynamic) onSuccess,
+    required Function(dynamic) onFailure,
   }) async {
     try {
       http.Response response;
@@ -96,5 +97,6 @@ class ApiServices {
 
 class ApiEndPoints {
   static String baseUrl = "https://dummyjson.com/";
-  static String category = "products/categories";
+  static String categories = "products/categories";
+  static String category = "products/category";
 }
