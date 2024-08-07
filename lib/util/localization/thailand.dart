@@ -4,4 +4,10 @@ final Map<String, String> th = {
   "Language": "ภาษา",
   "Thailand": "ประเทศไทย",
   "English": "ภาษาอังกฤษ",
+  "Price": "ราคา",
+  "Stock": "สต็อก",
+  "Rating": "คะแนน",
+  "ReturnPolicy": "นโยบายการคืนสินค้า",
+  "WarrantyInformation": "ข้อมูลการรับประกัน",
+  "Brand": "แบรนด์",
 };

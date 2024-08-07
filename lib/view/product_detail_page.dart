@@ -25,8 +25,6 @@ class ProductDetailPage extends StatelessWidget {
         body: Column(
           children: [
             GetBuilder<ProductController>(builder: (controller) {
-              superPrint(product.images.length, title: "Length");
-              superPrint(controller.dotPositoin, title: "Pos");
               return Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
@@ -79,17 +77,18 @@ class ProductDetailPage extends StatelessWidget {
                     product.description,
                   ),
                   10.heightBox(),
-                  Text("Price : ${product.price}"),
+                  Text("${"Price".tr} : ${product.price}"),
                   10.heightBox(),
-                  Text("Stock : ${product.stock}"),
+                  Text("${"Stock".tr} : ${product.stock}"),
                   10.heightBox(),
-                  Text("Rating : ${product.rating}"),
+                  Text("${"Rating".tr} : ${product.rating}"),
                   10.heightBox(),
-                  Text("ReturnPolicy : ${product.returnPolicy}"),
+                  Text("${"ReturnPolicy".tr} : ${product.returnPolicy}"),
                   10.heightBox(),
-                  Text("WarrantyInformation : ${product.warrantyInformation}"),
+                  Text(
+                      "${"WarrantyInformation".tr} : ${product.warrantyInformation}"),
                   10.heightBox(),
-                  Text("Brand : ${product.brand}"),
+                  Text("${"Brand".tr} : ${product.brand}"),
                   10.heightBox(),
                 ],
               ),

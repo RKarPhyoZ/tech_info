@@ -39,7 +39,6 @@ class ProductController extends GetxController {
     try {
       isLoadingProduct = true;
       products.clear();
-      superPrint("${ApiEndPoints.categories}/$name");
       update();
       await ApiServices().request(
         method: "GET",

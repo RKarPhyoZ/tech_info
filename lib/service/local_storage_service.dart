@@ -26,8 +26,9 @@ class LocalStorageServices {
   }
 
   // Set  language in shared preferences
-  static Future<void> setToken(String languageCode) async {
+  static Future<void> setLanguage(String languageCode) async {
     try {
+      superPrint(languageCode,title: "Language");
       await _sharedPreferences.setString(language, languageCode);
     } catch (e) {
       superPrint(e);

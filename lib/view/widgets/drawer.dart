@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:techinfo/service/local_storage_service.dart';
 import 'package:techinfo/util/common.dart';
 import 'package:techinfo/util/extensions.dart';
 
@@ -24,24 +25,29 @@ class CustomDrawer extends StatelessWidget {
             const Divider(),
             10.heightBox(),
             selectLanguage(() {
-              superPrint("OK");
               Get.updateLocale(Locale(AppLanguages.th.name));
-            }, "assets/flags/thailand.jpg", "Thailand".tr),
+              LocalStorageServices.setLanguage("th");
+            }, "assets/flags/thailand.jpg", "Thailand".tr,
+                LocalStorageServices.getLanguage() == "th"),
             30.heightBox(),
             selectLanguage(() {
               Get.updateLocale(Locale("${AppLanguages.th.name}-us"));
-            }, "assets/flags/united_state.jpg", "English".tr),
+              LocalStorageServices.setLanguage("${AppLanguages.en.name}-us");
+            }, "assets/flags/united_state.jpg", "English".tr,
+                LocalStorageServices.getLanguage() == "en-us"),
           ],
         ),
       ),
     );
   }
 
-  Widget selectLanguage(Function() onTap, String flag, String text) {
+  Widget selectLanguage(
+      Function() onTap, String flag, String text, bool isSelected) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        color: Colors.transparent,
+        color: isSelected ? Colors.grey.withOpacity(0.2) : Colors.transparent,
+        padding: const EdgeInsets.all(10),
         child: Row(
           children: [
             Container(
@@ -54,7 +60,7 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            20.widthBox(),
+            10.widthBox(),
             Text(text),
           ],
         ),
